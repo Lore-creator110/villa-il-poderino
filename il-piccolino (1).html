@@ -1,0 +1,1391 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Villa Il Poderino · Il Piccolino</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --stone: #EDE8DF;
+    --stone-deep: #DDD5C5;
+    --ink: #1A1F2E;
+    --ink-soft: #3A4253;
+    --sea: #1E3A5F;
+    --rust: #A8533A;
+    --rust-soft: #C77B5F;
+    --muted: #6B6F7A;
+    --line: rgba(26, 31, 46, 0.12);
+    --card: #FFFFFF;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--stone);
+    color: var(--ink);
+    line-height: 1.6;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* === HEADER === */
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(237, 232, 223, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+    padding: 14px 20px;
+  }
+  .header-inner {
+    max-width: 720px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .brand {
+    font-family: 'Fraunces', serif;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    color: var(--ink);
+  }
+  .brand-mark {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background: var(--rust);
+    border-radius: 50%;
+    margin-right: 8px;
+    transform: translateY(-2px);
+  }
+  .lang-switcher {
+    display: flex;
+    gap: 4px;
+    background: var(--card);
+    padding: 4px;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+  }
+  .lang-btn {
+    background: transparent;
+    border: none;
+    padding: 6px 12px;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    color: var(--muted);
+    cursor: pointer;
+    border-radius: 999px;
+    transition: all 0.2s ease;
+  }
+  .lang-btn:hover { color: var(--ink); }
+  .lang-btn.active {
+    background: var(--ink);
+    color: var(--stone);
+  }
+
+  /* === HERO === */
+  .hero {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 64px 24px 48px;
+    text-align: left;
+  }
+  .eyebrow {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin-bottom: 20px;
+  }
+  .hero h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: clamp(2.2rem, 8vw, 3.4rem);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: 20px;
+  }
+  .hero h1 em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--sea);
+  }
+  .hero-subtitle {
+    font-size: 16px;
+    color: var(--ink-soft);
+    max-width: 480px;
+  }
+
+  /* === SECTIONS === */
+  section {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 32px 24px;
+  }
+  .section-num {
+    font-family: 'Fraunces', serif;
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--rust);
+    letter-spacing: 0.1em;
+    display: block;
+    margin-bottom: 6px;
+  }
+  .section-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: clamp(1.6rem, 5vw, 2rem);
+    color: var(--ink);
+    margin-bottom: 24px;
+    letter-spacing: -0.01em;
+    line-height: 1.15;
+  }
+
+  /* === INFO GRID === */
+  .info-grid {
+    display: grid;
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .info-row {
+    background: var(--card);
+    padding: 18px 20px;
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    gap: 16px;
+    align-items: start;
+  }
+  .info-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+    font-weight: 500;
+    padding-top: 2px;
+  }
+  .info-value {
+    font-size: 15px;
+    color: var(--ink);
+    font-weight: 500;
+    word-break: break-word;
+  }
+  .info-value .hint {
+    display: block;
+    font-size: 13px;
+    color: var(--muted);
+    font-weight: 400;
+    margin-top: 4px;
+  }
+  .placeholder {
+    background: rgba(168, 83, 58, 0.08);
+    color: var(--rust);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-family: 'Inter', monospace;
+    font-size: 13px;
+    font-weight: 500;
+  }
+
+  /* === RULES === */
+  .rules {
+    list-style: none;
+    display: grid;
+    gap: 14px;
+  }
+  .rule {
+    display: grid;
+    grid-template-columns: 28px 1fr;
+    gap: 14px;
+    align-items: start;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .rule:last-child { border-bottom: none; }
+  .rule-icon {
+    width: 24px;
+    height: 24px;
+    border: 1px solid var(--ink);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    flex-shrink: 0;
+    color: var(--ink);
+  }
+  .rule-icon.warn { border-color: var(--rust); color: var(--rust); }
+  .rule p { font-size: 14.5px; color: var(--ink-soft); }
+  .rule strong { color: var(--ink); font-weight: 600; }
+
+  /* === ISLAND === */
+  .island-intro {
+    font-family: 'Fraunces', serif;
+    font-size: 18px;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--ink-soft);
+    line-height: 1.5;
+    padding: 0 0 32px;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 32px;
+  }
+
+  .topic {
+    margin-bottom: 36px;
+  }
+  .topic-head {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 14px;
+  }
+  .topic-num {
+    font-family: 'Fraunces', serif;
+    font-size: 13px;
+    color: var(--rust);
+    font-weight: 400;
+    min-width: 24px;
+  }
+  .topic h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 22px;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+  .topic p {
+    color: var(--ink-soft);
+    font-size: 15px;
+    margin-bottom: 12px;
+    padding-left: 38px;
+  }
+  .topic ul {
+    list-style: none;
+    padding-left: 38px;
+  }
+  .topic ul li {
+    color: var(--ink-soft);
+    font-size: 14.5px;
+    padding: 6px 0;
+    border-bottom: 1px dashed var(--line);
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 16px;
+    align-items: baseline;
+  }
+  .topic ul li:last-child { border-bottom: none; }
+  .topic ul li strong { color: var(--ink); font-weight: 600; }
+  .topic ul li span.tag {
+    font-size: 11px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    white-space: nowrap;
+  }
+
+  .staff-note {
+    margin-top: 18px;
+    margin-left: 38px;
+    padding: 12px 16px;
+    background: rgba(30, 58, 95, 0.06);
+    border-left: 2px solid var(--sea);
+    border-radius: 0 6px 6px 0;
+    font-size: 13.5px;
+    color: var(--ink-soft);
+    font-style: italic;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .staff-note::before {
+    content: "✦";
+    color: var(--sea);
+    font-style: normal;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+
+  .hl {
+    background: linear-gradient(180deg, transparent 55%, rgba(168, 83, 58, 0.22) 55%);
+    padding: 0 2px;
+    font-weight: 600;
+    color: var(--ink);
+    font-style: normal;
+  }
+  .host-line {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 4px 0;
+    border-bottom: 1px dashed var(--line);
+  }
+  .host-line:last-child { border-bottom: none; }
+  .host-line:first-child { padding-top: 0; }
+  .host-name {
+    font-weight: 500;
+    color: var(--ink);
+    font-size: 14.5px;
+  }
+  .host-phone {
+    font-family: 'Fraunces', serif;
+    font-size: 15px;
+    color: var(--sea);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+  }
+  .host-phone:hover { color: var(--rust); }
+
+  .waste-intro {
+    font-size: 14px;
+    color: var(--ink-soft);
+    font-weight: 400;
+    margin-bottom: 10px;
+  }
+  .waste-list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 8px 18px;
+    margin: 10px 0 12px;
+  }
+  .waste-list li {
+    font-size: 13.5px;
+    color: var(--ink);
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding-left: 2px;
+    flex-wrap: wrap;
+  }
+  .waste-list li::before {
+    content: "";
+    display: inline-block;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--bin-color, var(--rust));
+    border: 1px solid rgba(0,0,0,0.12);
+    flex-shrink: 0;
+  }
+  .waste-list .bin-name {
+    font-size: 12px;
+    color: var(--muted);
+    font-weight: 400;
+    font-style: italic;
+    margin-left: auto;
+    padding-left: 6px;
+  }
+  .waste-outro {
+    font-size: 13px;
+    color: var(--muted);
+    font-style: italic;
+    margin-top: 8px;
+  }
+
+  /* === EMERGENCY === */
+  .emergency {
+    background: var(--ink);
+    color: var(--stone);
+    border-radius: 12px;
+    padding: 28px 24px;
+    margin: 24px;
+    max-width: 672px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .emergency .section-num { color: var(--rust-soft); }
+  .emergency .section-title { color: var(--stone); }
+  .emergency-group {
+    margin-top: 18px;
+  }
+  .emergency-group:first-of-type { margin-top: 0; }
+  .emergency-sub {
+    font-family: 'Fraunces', serif;
+    font-size: 12px;
+    font-style: italic;
+    color: var(--rust-soft);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid rgba(237, 232, 223, 0.2);
+  }
+  .emergency-grid {
+    display: grid;
+    gap: 12px;
+  }
+  .emergency-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 16px;
+    align-items: baseline;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(237, 232, 223, 0.15);
+  }
+  .emergency-row:last-child { border-bottom: none; }
+  .emergency-label { font-size: 14px; color: var(--stone); }
+  .emergency-label .sub {
+    display: block;
+    font-size: 11px;
+    color: rgba(237, 232, 223, 0.55);
+    font-style: italic;
+    margin-top: 2px;
+  }
+  .emergency-num {
+    font-family: 'Fraunces', serif;
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--rust-soft);
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+  }
+  .emergency-num a { color: inherit; text-decoration: none; }
+
+  /* === FOOTER === */
+  footer {
+    text-align: center;
+    padding: 48px 24px 32px;
+    color: var(--muted);
+    font-size: 12px;
+    letter-spacing: 0.05em;
+  }
+  footer .sig {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 14px;
+    color: var(--ink-soft);
+    margin-bottom: 8px;
+  }
+
+  /* === DIVIDERS === */
+  .divider {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+  .divider-line {
+    height: 1px;
+    background: var(--line);
+  }
+
+  /* === RESPONSIVE === */
+  @media (max-width: 520px) {
+    .info-row {
+      grid-template-columns: 1fr;
+      gap: 4px;
+    }
+    .topic p, .topic ul { padding-left: 0; }
+    .staff-note { margin-left: 0; }
+    .topic-head { gap: 10px; }
+    .hero { padding: 40px 20px 32px; }
+    section { padding: 24px 20px; }
+    .lang-btn { padding: 5px 9px; font-size: 11px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <div class="brand">
+      <span class="brand-mark"></span>
+      <span data-i18n="brand">Villa Il Poderino · Il Piccolino</span>
+    </div>
+    <div class="lang-switcher" role="tablist">
+      <button class="lang-btn active" data-lang="it" aria-label="Italiano">IT</button>
+      <button class="lang-btn" data-lang="en" aria-label="English">EN</button>
+      <button class="lang-btn" data-lang="de" aria-label="Deutsch">DE</button>
+      <button class="lang-btn" data-lang="fr" aria-label="Français">FR</button>
+      <button class="lang-btn" data-lang="es" aria-label="Español">ES</button>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="eyebrow" data-i18n="hero_eyebrow">La vostra casa sull'isola</div>
+  <h1 data-i18n="hero_title">Benvenuti<br><em>Il Piccolino</em></h1>
+  <p class="hero-subtitle" data-i18n="hero_subtitle">Una piccola guida per godervi al meglio il soggiorno — informazioni pratiche sull'appartamento e i nostri consigli sull'Isola d'Elba.</p>
+</div>
+
+<div class="divider"><div class="divider-line"></div></div>
+
+<!-- APARTMENT INFO -->
+<section>
+  <span class="section-num">I.</span>
+  <h2 class="section-title" data-i18n="apt_title">L'appartamento</h2>
+  <div class="info-grid">
+    <div class="info-row">
+      <div class="info-label" data-i18n="apt_wifi_network">Rete Wi-Fi</div>
+      <div class="info-value" style="font-family: 'Fraunces', serif; font-size: 16px;">TP-Link</div>
+    </div>
+    <div class="info-row">
+      <div class="info-label" data-i18n="apt_wifi_pw">Password</div>
+      <div class="info-value" style="font-family: 'Fraunces', serif; font-size: 16px; letter-spacing: 0.05em; word-break: break-all;">17155809</div>
+    </div>
+    <div class="info-row">
+      <div class="info-label" data-i18n="apt_checkin">Check-in</div>
+      <div class="info-value" data-i18n="apt_checkin_val">15:00 – 17:00 in presenza · oltre, check-in autonomo</div>
+    </div>
+    <div class="info-row">
+      <div class="info-label" data-i18n="apt_checkout">Check-out</div>
+      <div class="info-value" data-i18n="apt_checkout_val">entro le 09:30</div>
+    </div>
+    <div class="info-row">
+      <div class="info-label" data-i18n="apt_gate">Codice cancello</div>
+      <div class="info-value" style="font-family: 'Fraunces', serif; font-size: 18px; letter-spacing: 0.1em;">12198</div>
+    </div>
+    <div class="info-row">
+      <div class="info-label" data-i18n="apt_address">Indirizzo</div>
+      <div class="info-value">Via del Lecceto 134/D, Campo nell'Elba</div>
+    </div>
+    <div class="info-row">
+      <div class="info-label" data-i18n="apt_parking">Parcheggio</div>
+      <div class="info-value" data-i18n="apt_parking_hint">Vi preghiamo di parcheggiare lasciando sempre libero il passaggio per la normale viabilità delle altre auto.</div>
+    </div>
+    <div class="info-row">
+      <div class="info-label" data-i18n="apt_garden">Giardino</div>
+      <div class="info-value" data-i18n="apt_garden_hint">Il sistema di irrigazione automatica entra in funzione nelle ore notturne. Vi preghiamo di prestare attenzione qualora vi troviate in giardino in quegli orari.</div>
+    </div>
+    <div class="info-row">
+      <div class="info-label" data-i18n="apt_waste">Rifiuti</div>
+      <div class="info-value">
+        <div class="waste-intro" data-i18n="waste_intro">Raccolta differenziata in sacchetti separati:</div>
+        <ul class="waste-list">
+          <li style="--bin-color: #1e40af"><span data-i18n="waste_1">Plastica e metallo</span><span class="bin-name" data-i18n="bin_blue">Bidone Blu</span></li>
+          <li style="--bin-color: #6b3410"><span data-i18n="waste_4">Organico</span><span class="bin-name" data-i18n="bin_brown">Bidone Marrone</span></li>
+          <li style="--bin-color: #166534"><span data-i18n="waste_2">Vetro</span><span class="bin-name" data-i18n="bin_green">Bidone Verde</span></li>
+          <li style="--bin-color: #eab308"><span data-i18n="waste_3">Carta e cartone</span><span class="bin-name" data-i18n="bin_yellow">Bidone Giallo</span></li>
+          <li style="--bin-color: #6b7280"><span data-i18n="waste_5">Indifferenziato</span><span class="bin-name" data-i18n="bin_grey">Bidone Grigio</span></li>
+        </ul>
+        <div class="waste-outro" data-i18n="waste_outro">I sacchetti vanno poi conferiti nei bidoni del colore corrispondente, situati vicino al parcheggio.</div>
+      </div>
+    </div>
+    <div class="info-row">
+      <div class="info-label" data-i18n="apt_coffee">Macchina del caffè</div>
+      <div class="info-value" data-i18n="apt_coffee_hint">Vi preghiamo di prestare attenzione durante l'inserimento delle cialde: verificate che siano posizionate correttamente e che il contenitore non sia pieno. Non forzate la maniglia.</div>
+    </div>
+    <div class="info-row">
+      <div class="info-label" data-i18n="apt_contact">Contatti host</div>
+      <div class="info-value">
+        <div class="host-line"><span class="host-name">Elena</span><a class="host-phone" href="tel:+393285676984">328 5676 984</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"><div class="divider-line"></div></div>
+
+<!-- HOUSE RULES -->
+<section>
+  <span class="section-num">II.</span>
+  <h2 class="section-title" data-i18n="rules_title">Vivere bene insieme</h2>
+  <ul class="rules">
+    <li class="rule">
+      <div class="rule-icon warn">⚠</div>
+      <p data-i18n="rule_smoke"><strong>Vietato fumare</strong> all'interno dell'appartamento. Vi chiediamo di farlo all'esterno e di smaltire i mozziconi negli appositi contenitori.</p>
+    </li>
+    <li class="rule">
+      <div class="rule-icon">●</div>
+      <p data-i18n="rule_pets"><strong>Animali in giardino:</strong> possono circolare liberamente, ma vi chiediamo di evitare danni alla vegetazione e di rispettare la quiete dei vicini.</p>
+    </li>
+    <li class="rule">
+      <div class="rule-icon warn">⚠</div>
+      <p data-i18n="rule_party"><strong>Niente feste</strong> all'interno o all'esterno dell'appartamento.</p>
+    </li>
+    <li class="rule">
+      <div class="rule-icon">●</div>
+      <p data-i18n="rule_noise"><strong>Silenzio dopo mezzanotte:</strong> dopo le 24:00 vi chiediamo di evitare rumori per rispetto del vicinato.</p>
+    </li>
+    <li class="rule">
+      <div class="rule-icon">●</div>
+      <p data-i18n="rule_tidy"><strong>Ordine alla partenza:</strong> al momento del check-out vi chiediamo di lasciare l'appartamento ordinato e nelle condizioni in cui l'avete trovato.</p>
+    </li>
+    <li class="rule">
+      <div class="rule-icon warn">⚠</div>
+      <p data-i18n="rule_bbq"><strong>Barbecue:</strong> solo a carbonella. È assolutamente vietato l'uso di fiamme libere per ragioni di sicurezza.</p>
+    </li>
+    <li class="rule">
+      <div class="rule-icon">●</div>
+      <p data-i18n="rule_lights"><strong>Risparmio energetico — luci:</strong> vi chiediamo di spegnere le luci quando non utilizzate.</p>
+    </li>
+    <li class="rule">
+      <div class="rule-icon">●</div>
+      <p data-i18n="rule_ac"><strong>Risparmio energetico — aria condizionata:</strong> vi preghiamo di spegnerla quando uscite dall'appartamento.</p>
+    </li>
+    <li class="rule">
+      <div class="rule-icon">●</div>
+      <p data-i18n="rule_washer"><strong>Lavatrice — uso consapevole:</strong> aiutateci a ridurre lo spreco di acqua ed energia utilizzando la lavatrice solo a pieno carico.</p>
+    </li>
+  </ul>
+</section>
+
+<div class="divider"><div class="divider-line"></div></div>
+
+<!-- ISLAND -->
+<section>
+  <span class="section-num">III.</span>
+  <h2 class="section-title" data-i18n="island_title">L'Isola d'Elba</h2>
+  <p class="island-intro" data-i18n="island_intro">«La terza isola d'Italia, regno di Napoleone per nove mesi, terra di ferro, granito e oltre cento spiagge.»</p>
+
+  <div class="topic">
+    <div class="topic-head">
+      <span class="topic-num">01</span>
+      <h3 data-i18n="topic_history">Luoghi storici</h3>
+    </div>
+    <p data-i18n="history_intro">L'Elba è indissolubilmente legata a Napoleone, che vi trascorse l'esilio dal maggio 1814 al febbraio 1815. Le sue tracce sono ovunque.</p>
+    <ul>
+      <li><span><strong data-i18n="hist1_t">Villa dei Mulini</strong> — <span data-i18n="hist1_d">residenza principale di Napoleone, Portoferraio</span></span><span class="tag">Portoferraio</span></li>
+      <li><span><strong data-i18n="hist2_t">Villa San Martino</strong> — <span data-i18n="hist2_d">residenza estiva con la Galleria Demidoff</span></span><span class="tag">Portoferraio</span></li>
+      <li><span><strong data-i18n="hist3_t">Teatro dei Vigilanti</strong> — <span data-i18n="hist3_d">teatro voluto da Napoleone nel 1814</span></span><span class="tag">Portoferraio</span></li>
+      <li><span><strong data-i18n="hist4_t">Chiesa della Misericordia</strong> — <span data-i18n="hist4_d">maschera funebre e cimeli napoleonici</span></span><span class="tag">Portoferraio</span></li>
+      <li><span><strong data-i18n="hist5_t">Santuario Madonna del Monte</strong> — <span data-i18n="hist5_d">il più antico dell'isola, raggiungibile a piedi nel bosco</span></span><span class="tag">Marciana</span></li>
+      <li><span><strong data-i18n="hist6_t">Forte Falcone e Forte Stella</strong> — <span data-i18n="hist6_d">fortificazioni medicee del XVI secolo</span></span><span class="tag">Portoferraio</span></li>
+      <li><span><strong data-i18n="hist7_t">Parco Minerario di Rio</strong> — <span data-i18n="hist7_d">storia mineraria dell'isola, visite guidate</span></span><span class="tag">Rio Marina</span></li>
+    </ul>
+  </div>
+
+  <div class="topic">
+    <div class="topic-head">
+      <span class="topic-num">02</span>
+      <h3 data-i18n="topic_beaches_near">Spiagge — le più vicine</h3>
+    </div>
+    <p data-i18n="beaches_near_intro">Da Villa Il Poderino siete in una posizione privilegiata: la costa sud dell'Elba a portata di mano, con alcune delle spiagge più belle dell'isola a pochi minuti d'auto.</p>
+    <ul>
+      <li><span><strong>Colle Palombaia</strong> — <span data-i18n="bn1">ciottoli e sabbia scura, tranquilla, piccolo bar in spiaggia</span></span><span class="tag">~1,5 km</span></li>
+      <li><span><strong>Cavoli</strong> — <span data-i18n="bn2">sabbia bianca, microclima mite, una delle più famose dell'Elba</span></span><span class="tag">~3 km</span></li>
+      <li><span><strong>Marina di Campo</strong> — <span data-i18n="bn3">la spiaggia più lunga dell'isola, sabbia fine, ideale per famiglie</span></span><span class="tag">~3 km</span></li>
+      <li><span><strong>Seccheto</strong> — <span data-i18n="bn4">piccola spiaggia di sabbia e ciottoli, ottima per snorkeling</span></span><span class="tag">~4 km</span></li>
+      <li><span><strong>Fetovaia</strong> — <span data-i18n="bn5">sabbia dorata in insenatura riparata, mare smeraldo</span></span><span class="tag">~7 km</span></li>
+    </ul>
+  </div>
+
+  <div class="topic">
+    <div class="topic-head">
+      <span class="topic-num">03</span>
+      <h3 data-i18n="topic_beaches_best">Spiagge — le più belle dell'isola</h3>
+    </div>
+    <p data-i18n="beaches_best_intro">Una selezione tra le oltre 100 spiagge dell'Elba, divise per costa e tipologia.</p>
+    <ul>
+      <li><span><strong>Fetovaia</strong> — <span data-i18n="b1">sabbia dorata in un'insenatura riparata, mare smeraldo</span></span><span class="tag" data-i18n="coast_sw">Sud-ovest</span></li>
+      <li><span><strong>Cavoli</strong> — <span data-i18n="b2">sabbia bianca, microclima mite, vivace</span></span><span class="tag" data-i18n="coast_s">Sud</span></li>
+      <li><span><strong>Biodola</strong> — <span data-i18n="b3">600 m di sabbia fine, ideale per famiglie</span></span><span class="tag" data-i18n="coast_n">Nord</span></li>
+      <li><span><strong>Sansone</strong> — <span data-i18n="b4">ciottoli bianchi, acqua trasparente, perfetta per snorkeling</span></span><span class="tag" data-i18n="coast_n">Nord</span></li>
+      <li><span><strong>Sant'Andrea</strong> — <span data-i18n="b5">sabbia e scogliere di granito, tramonti spettacolari</span></span><span class="tag" data-i18n="coast_nw">Nord-ovest</span></li>
+      <li><span><strong>Capo Bianco</strong> — <span data-i18n="b6">falesie bianche di eurite, acqua turchese</span></span><span class="tag" data-i18n="coast_n">Nord</span></li>
+      <li><span><strong>Laconella</strong> — <span data-i18n="b7">selvaggia e tranquilla, Golfo di Lacona</span></span><span class="tag" data-i18n="coast_s">Sud</span></li>
+      <li><span><strong>Padulella</strong> — <span data-i18n="b8">piccola caletta di ciottoli bianchi</span></span><span class="tag" data-i18n="coast_n">Nord</span></li>
+      <li><span><strong>Procchio</strong> — <span data-i18n="b9">lunga spiaggia di sabbia fine, ben servita</span></span><span class="tag" data-i18n="coast_n">Nord</span></li>
+      <li><span><strong>Innamorata</strong> — <span data-i18n="b10">leggenda romantica e acque limpide</span></span><span class="tag" data-i18n="coast_se">Sud-est</span></li>
+      <li><span><strong>Relitto di Pomonte</strong> — <span data-i18n="b11">snorkeling sul mercantile Elviscot a 10 m</span></span><span class="tag" data-i18n="coast_sw">Sud-ovest</span></li>
+    </ul>
+  </div>
+
+  <div class="topic">
+    <div class="topic-head">
+      <span class="topic-num">04</span>
+      <h3 data-i18n="topic_pianosa">Pianosa</h3>
+    </div>
+    <p data-i18n="pianosa_text">Isola dell'Arcipelago Toscano, raggiungibile in autonomia con i traghetti Toremar da Piombino o Rio Marina (tutto l'anno) e con <span class="hl">gli aliscafi Aquavision da Marina di Campo</span> in alta stagione. Il paese e la spiaggia di <strong>Cala Giovanna</strong> — l'unica balneabile — sono ad accesso libero. Le altre zone dell'isola (sentieri, catacombe paleocristiane, Bagno di Agrippa, ex carcere) si visitano solo con le Guide del Parco. Numero chiuso a 250 visitatori al giorno e biglietto d'ingresso del Parco obbligatorio: in alta stagione conviene prenotare con largo anticipo.</p>
+  </div>
+
+  <div class="topic">
+    <div class="topic-head">
+      <span class="topic-num">05</span>
+      <h3 data-i18n="topic_hiking">Escursioni e trekking</h3>
+    </div>
+    <p data-i18n="hiking_intro">L'Elba è attraversata dalla Grande Traversata Elbana (GTE) e da una rete di sentieri ben segnalati.</p>
+    <ul>
+      <li><span><strong data-i18n="h1_t">Monte Capanne</strong> — <span data-i18n="h1_d">la vetta dell'isola (1019 m). A piedi da Marciana o in cabinovia</span></span><span class="tag">★★★</span></li>
+      <li><span><strong data-i18n="h2_t">Santuario Madonna del Monte</strong> — <span data-i18n="h2_d">sentiero nel bosco da Marciana, 40-60 min</span></span><span class="tag">★★</span></li>
+      <li><span><strong data-i18n="h3_t">Volterraio</strong> — <span data-i18n="h3_d">castello medievale con vista a 360°</span></span><span class="tag">★★</span></li>
+      <li><span><strong data-i18n="h4_t">GTE — Grande Traversata Elbana</strong> — <span data-i18n="h4_d">trekking di 2-3 giorni da est a ovest</span></span><span class="tag">★★★</span></li>
+      <li><span><strong data-i18n="h5_t">Capo d'Enfola</strong> — <span data-i18n="h5_d">passeggiata facile sul promontorio, bunker WW2</span></span><span class="tag">★</span></li>
+    </ul>
+  </div>
+
+  <div class="topic">
+    <div class="topic-head">
+      <span class="topic-num">06</span>
+      <h3 data-i18n="topic_bike">Bici e passeggiate</h3>
+    </div>
+    <p data-i18n="bike_text">L'Elba è una destinazione molto amata da ciclisti e mountain biker, con strade panoramiche e oltre 250 km di sentieri tracciati. Diversi punti di noleggio bici e e-bike a Portoferraio, Marina di Campo e Capoliveri. Capoliveri in particolare è considerata la "capitale" della MTB elbana, con percorsi segnalati di vari livelli sul Monte Calamita. Per le passeggiate facili, consigliate la Via del Volterraio, il sentiero costiero da Sant'Andrea a Patresi e il lungomare di Marciana Marina.</p>
+  </div>
+
+  <div class="topic">
+    <div class="topic-head">
+      <span class="topic-num">07</span>
+      <h3 data-i18n="topic_bus">Trasporti — Autobus</h3>
+    </div>
+    <p data-i18n="bus_text">Il servizio di trasporto pubblico è gestito da <strong>Autolinee Toscane (at-bus.it)</strong>. Le linee collegano Portoferraio con tutti i principali centri dell'isola: Marciana Marina, Marina di Campo, Porto Azzurro, Capoliveri, Rio. I biglietti si acquistano presso edicole, tabaccherie, bar autorizzati o tramite l'app <em>at bus Toscana</em>. In alta stagione le corse sono potenziate; in bassa stagione conviene controllare gli orari in anticipo. Per il traghetto da/per Piombino: Toremar, Moby, Blu Navy, Corsica Ferries.</p>
+  </div>
+</section>
+
+<!-- EMERGENCY -->
+<div class="emergency">
+  <span class="section-num">IV.</span>
+  <h2 class="section-title" data-i18n="emerg_title">Numeri utili</h2>
+
+  <div class="emergency-group">
+    <div class="emergency-sub" data-i18n="emerg_sub_emergencies">Emergenze</div>
+    <div class="emergency-grid">
+      <div class="emergency-row">
+        <div class="emergency-label" data-i18n="emerg_eu">Emergenza unica europea</div>
+        <div class="emergency-num"><a href="tel:112">112</a></div>
+      </div>
+      <div class="emergency-row">
+        <div class="emergency-label" data-i18n="emerg_med">Pronto soccorso / Ambulanza</div>
+        <div class="emergency-num"><a href="tel:118">118</a></div>
+      </div>
+      <div class="emergency-row">
+        <div class="emergency-label" data-i18n="emerg_fire">Vigili del fuoco</div>
+        <div class="emergency-num"><a href="tel:115">115</a></div>
+      </div>
+      <div class="emergency-row">
+        <div class="emergency-label" data-i18n="emerg_coast">Guardia costiera</div>
+        <div class="emergency-num"><a href="tel:1530">1530</a></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="emergency-group">
+    <div class="emergency-sub" data-i18n="emerg_sub_health">Sanità sull'Isola d'Elba</div>
+    <div class="emergency-grid">
+      <div class="emergency-row">
+        <div class="emergency-label" data-i18n="emerg_hospital">Ospedale di Portoferraio<span class="sub" data-i18n="emerg_hospital_sub">Località San Rocco</span></div>
+        <div class="emergency-num"><a href="tel:+390565926111">0565 926111</a></div>
+      </div>
+      <div class="emergency-row">
+        <div class="emergency-label" data-i18n="emerg_tourist_doc">Guardia Medica Turistica<span class="sub" data-i18n="emerg_tourist_doc_sub">Servizio estivo per non residenti · versante ovest</span></div>
+        <div class="emergency-num"><a href="tel:+393341123802">334 1123802</a></div>
+      </div>
+      <div class="emergency-row">
+        <div class="emergency-label" data-i18n="emerg_continuity">Continuità Assistenziale<span class="sub" data-i18n="emerg_continuity_sub">Notte, weekend e festivi</span></div>
+        <div class="emergency-num"><a href="tel:+390586223456">0586 223456</a></div>
+      </div>
+      <div class="emergency-row">
+        <div class="emergency-label" data-i18n="emerg_pharmacy">Farmacia Campo nell'Elba<span class="sub">Via Verdi 1, Marina di Campo</span></div>
+        <div class="emergency-num"><a href="tel:+390565976590">0565 976590</a></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="emergency-group">
+    <div class="emergency-sub" data-i18n="emerg_sub_host">La struttura</div>
+    <div class="emergency-grid">
+      <div class="emergency-row">
+        <div class="emergency-label">Elena<span class="sub" data-i18n="emerg_host_sub">Host Villa Il Poderino</span></div>
+        <div class="emergency-num"><a href="tel:+393285676984">328 5676 984</a></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="sig" data-i18n="footer_sig">Vi auguriamo un soggiorno indimenticabile</div>
+  <div data-i18n="footer_brand">Villa Il Poderino · Isola d'Elba, Toscana</div>
+</footer>
+
+<script>
+const translations = {
+  it: {
+    brand: "Villa Il Poderino · Il Piccolino",
+    hero_eyebrow: "La vostra casa sull'isola",
+    hero_title: "Benvenuti<br><em>Il Piccolino</em>",
+    hero_subtitle: "Una piccola guida per godervi al meglio il soggiorno — informazioni pratiche sull'appartamento e i nostri consigli sull'Isola d'Elba.",
+    apt_title: "L'appartamento",
+    apt_wifi_network: "Rete Wi-Fi",
+    apt_wifi_pw: "Password",
+    apt_checkin: "Check-in",
+    apt_checkin_val: "15:00 – 17:00 in presenza · oltre, check-in autonomo",
+    apt_checkout: "Check-out",
+    apt_checkout_val: "entro le 09:30",
+    apt_gate: "Codice cancello",
+    apt_address: "Indirizzo",
+    apt_parking: "Parcheggio",
+    apt_parking_hint: "Vi preghiamo di parcheggiare lasciando sempre libero il passaggio per la normale viabilità delle altre auto.",
+    apt_garden: "Giardino",
+    apt_garden_hint: "Il sistema di irrigazione automatica entra in funzione nelle ore notturne. Vi preghiamo di prestare attenzione qualora vi troviate in giardino in quegli orari.",
+    apt_waste: "Rifiuti",
+    waste_intro: "Raccolta differenziata in sacchetti separati:",
+    waste_1: "Plastica e metallo",
+    waste_2: "Vetro",
+    waste_3: "Carta e cartone",
+    waste_4: "Organico",
+    waste_5: "Indifferenziato",
+    waste_outro: "I sacchetti vanno poi conferiti nei bidoni del colore corrispondente, situati vicino al parcheggio.",
+    bin_blue: "Bidone Blu",
+    bin_brown: "Bidone Marrone",
+    bin_green: "Bidone Verde",
+    bin_yellow: "Bidone Giallo",
+    bin_grey: "Bidone Grigio",
+    apt_coffee: "Macchina del caffè",
+    apt_coffee_hint: "Vi preghiamo di prestare attenzione durante l'inserimento delle cialde: verificate che siano posizionate correttamente e che il contenitore non sia pieno. Non forzate la maniglia.",
+    apt_contact: "Contatti host",
+    rules_title: "Vivere bene insieme",
+    rule_smoke: "<strong>Vietato fumare</strong> all'interno dell'appartamento. Vi chiediamo di farlo all'esterno e di smaltire i mozziconi negli appositi contenitori.",
+    rule_pets: "<strong>Animali in giardino:</strong> possono circolare liberamente, ma vi chiediamo di evitare danni alla vegetazione e di rispettare la quiete dei vicini.",
+    rule_party: "<strong>Niente feste</strong> all'interno o all'esterno dell'appartamento.",
+    rule_noise: "<strong>Silenzio dopo mezzanotte:</strong> dopo le 24:00 vi chiediamo di evitare rumori per rispetto del vicinato.",
+    rule_tidy: "<strong>Ordine alla partenza:</strong> al momento del check-out vi chiediamo di lasciare l'appartamento ordinato e nelle condizioni in cui l'avete trovato.",
+    rule_bbq: "<strong>Barbecue:</strong> solo a carbonella. È assolutamente vietato l'uso di fiamme libere per ragioni di sicurezza.",
+    rule_lights: "<strong>Risparmio energetico — luci:</strong> vi chiediamo di spegnere le luci quando non utilizzate.",
+    rule_ac: "<strong>Risparmio energetico — aria condizionata:</strong> vi preghiamo di spegnerla quando uscite dall'appartamento.",
+    rule_washer: "<strong>Lavatrice — uso consapevole:</strong> aiutateci a ridurre lo spreco di acqua ed energia utilizzando la lavatrice solo a pieno carico.",
+    island_title: "L'Isola d'Elba",
+    island_intro: "«La terza isola d'Italia, regno di Napoleone per nove mesi, terra di ferro, granito e oltre cento spiagge.»",
+    topic_history: "Luoghi storici",
+    history_intro: "L'Elba è indissolubilmente legata a Napoleone, che vi trascorse l'esilio dal maggio 1814 al febbraio 1815. Le sue tracce sono ovunque.",
+    hist1_t: "Villa dei Mulini", hist1_d: "residenza principale di Napoleone, Portoferraio",
+    hist2_t: "Villa San Martino", hist2_d: "residenza estiva con la Galleria Demidoff",
+    hist3_t: "Teatro dei Vigilanti", hist3_d: "teatro voluto da Napoleone nel 1814",
+    hist4_t: "Chiesa della Misericordia", hist4_d: "maschera funebre e cimeli napoleonici",
+    hist5_t: "Santuario Madonna del Monte", hist5_d: "il più antico dell'isola, raggiungibile a piedi nel bosco",
+    hist6_t: "Forte Falcone e Forte Stella", hist6_d: "fortificazioni medicee del XVI secolo",
+    hist7_t: "Parco Minerario di Rio", hist7_d: "storia mineraria dell'isola, visite guidate",
+    topic_beaches_near: "Spiagge — le più vicine",
+    beaches_near_intro: "Da Villa Il Poderino siete in una posizione privilegiata: la costa sud dell'Elba a portata di mano, con alcune delle spiagge più belle dell'isola a pochi minuti d'auto.",
+    bn1: "ciottoli e sabbia scura, tranquilla, piccolo bar in spiaggia",
+    bn2: "sabbia bianca, microclima mite, una delle più famose dell'Elba",
+    bn3: "la spiaggia più lunga dell'isola, sabbia fine, ideale per famiglie",
+    bn4: "piccola spiaggia di sabbia e ciottoli, ottima per snorkeling",
+    bn5: "sabbia dorata in insenatura riparata, mare smeraldo",
+    topic_beaches_best: "Spiagge — le più belle dell'isola",
+    beaches_best_intro: "Una selezione tra le oltre 100 spiagge dell'Elba, divise per costa e tipologia.",
+    b1: "sabbia dorata in un'insenatura riparata, mare smeraldo",
+    b2: "sabbia bianca, microclima mite, vivace",
+    b3: "600 m di sabbia fine, ideale per famiglie",
+    b4: "ciottoli bianchi, acqua trasparente, perfetta per snorkeling",
+    b5: "sabbia e scogliere di granito, tramonti spettacolari",
+    b6: "falesie bianche di eurite, acqua turchese",
+    b7: "selvaggia e tranquilla, Golfo di Lacona",
+    b8: "piccola caletta di ciottoli bianchi",
+    b9: "lunga spiaggia di sabbia fine, ben servita",
+    b10: "leggenda romantica e acque limpide",
+    b11: "snorkeling sul mercantile Elviscot a 10 m",
+    coast_n: "Nord", coast_s: "Sud", coast_sw: "Sud-ovest", coast_se: "Sud-est", coast_nw: "Nord-ovest",
+    topic_pianosa: "Pianosa",
+    pianosa_text: "Isola dell'Arcipelago Toscano, raggiungibile in autonomia con i traghetti Toremar da Piombino o Rio Marina (tutto l'anno) e con <span class=\"hl\">gli aliscafi Aquavision da Marina di Campo</span> in alta stagione. Il paese e la spiaggia di <strong>Cala Giovanna</strong> — l'unica balneabile — sono ad accesso libero. Le altre zone dell'isola (sentieri, catacombe paleocristiane, Bagno di Agrippa, ex carcere) si visitano solo con le Guide del Parco. Numero chiuso a 250 visitatori al giorno e biglietto d'ingresso del Parco obbligatorio: in alta stagione conviene prenotare con largo anticipo.",
+    topic_hiking: "Escursioni e trekking",
+    hiking_intro: "L'Elba è attraversata dalla Grande Traversata Elbana (GTE) e da una rete di sentieri ben segnalati.",
+    h1_t: "Monte Capanne", h1_d: "la vetta dell'isola (1019 m). A piedi da Marciana o in cabinovia",
+    h2_t: "Santuario Madonna del Monte", h2_d: "sentiero nel bosco da Marciana, 40-60 min",
+    h3_t: "Volterraio", h3_d: "castello medievale con vista a 360°",
+    h4_t: "GTE — Grande Traversata Elbana", h4_d: "trekking di 2-3 giorni da est a ovest",
+    h5_t: "Capo d'Enfola", h5_d: "passeggiata facile sul promontorio, bunker WW2",
+    topic_bike: "Bici e passeggiate",
+    bike_text: "L'Elba è una destinazione molto amata da ciclisti e mountain biker, con strade panoramiche e oltre 250 km di sentieri tracciati. Diversi punti di noleggio bici e e-bike a Portoferraio, Marina di Campo e Capoliveri. Capoliveri in particolare è considerata la \"capitale\" della MTB elbana, con percorsi segnalati di vari livelli sul Monte Calamita. Per le passeggiate facili, consigliate la Via del Volterraio, il sentiero costiero da Sant'Andrea a Patresi e il lungomare di Marciana Marina.",
+    topic_bus: "Trasporti — Autobus",
+    bus_text: "Il servizio di trasporto pubblico è gestito da <strong>Autolinee Toscane (at-bus.it)</strong>. Le linee collegano Portoferraio con tutti i principali centri dell'isola: Marciana Marina, Marina di Campo, Porto Azzurro, Capoliveri, Rio. I biglietti si acquistano presso edicole, tabaccherie, bar autorizzati o tramite l'app <em>at bus Toscana</em>. In alta stagione le corse sono potenziate; in bassa stagione conviene controllare gli orari in anticipo. Per il traghetto da/per Piombino: Toremar, Moby, Blu Navy, Corsica Ferries.",
+    emerg_title: "Numeri utili",
+    emerg_sub_emergencies: "Emergenze",
+    emerg_sub_health: "Sanità sull'Isola d'Elba",
+    emerg_sub_host: "La struttura",
+    emerg_eu: "Emergenza unica europea",
+    emerg_med: "Pronto soccorso / Ambulanza",
+    emerg_fire: "Vigili del fuoco",
+    emerg_coast: "Guardia costiera",
+    emerg_hospital: "Ospedale di Portoferraio",
+    emerg_hospital_sub: "Località San Rocco",
+    emerg_tourist_doc: "Guardia Medica Turistica",
+    emerg_tourist_doc_sub: "Servizio estivo per non residenti · versante ovest",
+    emerg_continuity: "Continuità Assistenziale",
+    emerg_continuity_sub: "Notte, weekend e festivi",
+    emerg_pharmacy: "Farmacia Campo nell'Elba",
+    emerg_host_sub: "Host Villa Il Poderino",
+    footer_sig: "Vi auguriamo un soggiorno indimenticabile",
+    footer_brand: "Villa Il Poderino · Isola d'Elba, Toscana",
+    staff_note: "Per maggiori informazioni o consigli su questo argomento, il nostro staff è sempre a vostra disposizione."
+  },
+  en: {
+    brand: "Villa Il Poderino · Il Piccolino",
+    hero_eyebrow: "Your home on the island",
+    hero_title: "Welcome<br><em>Il Piccolino</em>",
+    hero_subtitle: "A short guide to help you enjoy your stay — practical information about the apartment and our recommendations for Elba Island.",
+    apt_title: "The apartment",
+    apt_wifi_network: "Wi-Fi network",
+    apt_wifi_pw: "Password",
+    apt_checkin: "Check-in",
+    apt_checkin_val: "3:00 – 5:00 PM in person · later, self check-in",
+    apt_checkout: "Check-out",
+    apt_checkout_val: "by 9:30 AM",
+    apt_gate: "Gate code",
+    apt_address: "Address",
+    apt_parking: "Parking",
+    apt_parking_hint: "Please park leaving the passage clear for normal traffic of other cars.",
+    apt_garden: "Garden",
+    apt_garden_hint: "The automatic irrigation system activates during the night. Please be mindful should you find yourself in the garden at those hours.",
+    apt_waste: "Waste",
+    waste_intro: "Sorted waste collection — please use separate bags for:",
+    waste_1: "Plastic and metal",
+    waste_2: "Glass",
+    waste_3: "Paper and cardboard",
+    waste_4: "Organic waste",
+    waste_5: "General waste",
+    waste_outro: "Bags should then be deposited in the bins of the matching colour, located near the parking area.",
+    bin_blue: "Blue bin",
+    bin_brown: "Brown bin",
+    bin_green: "Green bin",
+    bin_yellow: "Yellow bin",
+    bin_grey: "Grey bin",
+    apt_coffee: "Coffee machine",
+    apt_coffee_hint: "Please take care when inserting the capsules: check that they are properly positioned and that the used-capsule container is not full. Do not force the handle.",
+    apt_contact: "Host contact",
+    rules_title: "Living well together",
+    rule_smoke: "<strong>No smoking</strong> inside the apartment. Please smoke outside and dispose of cigarette butts properly.",
+    rule_pets: "<strong>Pets in the garden:</strong> they can roam freely, but please avoid damage to plants and respect the neighbours' peace.",
+    rule_party: "<strong>No parties</strong> inside or outside the apartment.",
+    rule_noise: "<strong>Silence after midnight:</strong> after 12:00 AM please avoid noise out of respect for the neighbourhood.",
+    rule_tidy: "<strong>Tidy on departure:</strong> at check-out please leave the apartment tidy and in the condition you found it.",
+    rule_bbq: "<strong>Barbecue:</strong> charcoal only. Open flames are strictly forbidden for safety reasons.",
+    rule_lights: "<strong>Energy saving — lights:</strong> please switch off lights when not in use.",
+    rule_ac: "<strong>Energy saving — air conditioning:</strong> please switch it off when leaving the apartment.",
+    rule_washer: "<strong>Washing machine — mindful use:</strong> please help us reduce water and energy waste by running the washing machine only when fully loaded.",
+    island_title: "Elba Island",
+    island_intro: "«The third-largest Italian island, Napoleon's realm for nine months, land of iron, granite and over a hundred beaches.»",
+    topic_history: "Historic sites",
+    history_intro: "Elba is inseparably linked to Napoleon, who spent his exile here from May 1814 to February 1815. His traces are everywhere.",
+    hist1_t: "Villa dei Mulini", hist1_d: "Napoleon's main residence, Portoferraio",
+    hist2_t: "Villa San Martino", hist2_d: "summer residence with the Demidoff Gallery",
+    hist3_t: "Teatro dei Vigilanti", hist3_d: "theatre commissioned by Napoleon in 1814",
+    hist4_t: "Church of Misericordia", hist4_d: "Napoleon's death mask and memorabilia",
+    hist5_t: "Madonna del Monte Sanctuary", hist5_d: "the island's oldest, reachable on foot through the woods",
+    hist6_t: "Forte Falcone and Forte Stella", hist6_d: "16th-century Medici fortifications",
+    hist7_t: "Rio Mining Park", hist7_d: "the island's mining history, guided tours",
+    topic_beaches_near: "Beaches — closest to you",
+    beaches_near_intro: "Villa Il Poderino enjoys a privileged location: Elba's southern coast is right at hand, with some of the island's most beautiful beaches just a few minutes away by car.",
+    bn1: "pebbles and dark sand, quiet, small beach bar",
+    bn2: "white sand, mild microclimate, one of Elba's most famous",
+    bn3: "the island's longest beach, fine sand, ideal for families",
+    bn4: "small beach of sand and pebbles, excellent for snorkeling",
+    bn5: "golden sand in a sheltered cove, emerald sea",
+    topic_beaches_best: "Beaches — the island's finest",
+    beaches_best_intro: "A selection from Elba's 100+ beaches, by coast and type.",
+    b1: "golden sand in a sheltered cove, emerald sea",
+    b2: "white sand, mild microclimate, lively",
+    b3: "600 m of fine sand, ideal for families",
+    b4: "white pebbles, transparent water, perfect for snorkeling",
+    b5: "sand and granite cliffs, spectacular sunsets",
+    b6: "white eurite cliffs, turquoise water",
+    b7: "wild and quiet, Gulf of Lacona",
+    b8: "small cove of white pebbles",
+    b9: "long fine-sand beach, well served",
+    b10: "romantic legend and crystal-clear waters",
+    b11: "snorkeling on the Elviscot wreck at 10 m",
+    coast_n: "North", coast_s: "South", coast_sw: "South-west", coast_se: "South-east", coast_nw: "North-west",
+    topic_pianosa: "Pianosa",
+    pianosa_text: "Island of the Tuscan Archipelago, reachable independently by Toremar ferries from Piombino or Rio Marina (year-round) and by <span class=\"hl\">Aquavision hydrofoils from Marina di Campo</span> in high season. The village and <strong>Cala Giovanna</strong> beach — the only one open to swimming — are freely accessible. The rest of the island (trails, early-Christian catacombs, Bagno di Agrippa, former prison) can only be visited with Park Guides. Daily cap of 250 visitors and Park entrance ticket required: book well in advance in high season.",
+    topic_hiking: "Hiking and trekking",
+    hiking_intro: "Elba is crossed by the Grande Traversata Elbana (GTE) and a network of well-marked trails.",
+    h1_t: "Monte Capanne", h1_d: "the island's peak (1019 m). On foot from Marciana or by cable car",
+    h2_t: "Madonna del Monte Sanctuary", h2_d: "forest path from Marciana, 40-60 min",
+    h3_t: "Volterraio", h3_d: "medieval castle with 360° view",
+    h4_t: "GTE — Grand Elban Traverse", h4_d: "2-3 day trek from east to west",
+    h5_t: "Capo d'Enfola", h5_d: "easy walk on the promontory, WW2 bunkers",
+    topic_bike: "Bike and walks",
+    bike_text: "Elba is a beloved destination for cyclists and mountain bikers, with scenic roads and over 250 km of marked trails. Several bike and e-bike rental points in Portoferraio, Marina di Campo and Capoliveri. Capoliveri in particular is considered the \"capital\" of Elban MTB, with marked routes of various levels on Monte Calamita. For easy walks, we recommend the Via del Volterraio, the coastal path from Sant'Andrea to Patresi and the Marciana Marina seafront.",
+    topic_bus: "Transport — Buses",
+    bus_text: "Public transport is operated by <strong>Autolinee Toscane (at-bus.it)</strong>. Lines connect Portoferraio with all the island's main centres: Marciana Marina, Marina di Campo, Porto Azzurro, Capoliveri, Rio. Tickets are sold at newsstands, tobacconists, authorized bars or via the <em>at bus Toscana</em> app. In high season service is enhanced; in low season check schedules in advance. For ferries to/from Piombino: Toremar, Moby, Blu Navy, Corsica Ferries.",
+    emerg_title: "Useful numbers",
+    emerg_sub_emergencies: "Emergencies",
+    emerg_sub_health: "Healthcare on Elba Island",
+    emerg_sub_host: "The property",
+    emerg_eu: "European emergency number",
+    emerg_med: "Emergency / Ambulance",
+    emerg_fire: "Fire brigade",
+    emerg_coast: "Coast guard",
+    emerg_hospital: "Portoferraio Hospital",
+    emerg_hospital_sub: "San Rocco area",
+    emerg_tourist_doc: "Tourist Medical Service",
+    emerg_tourist_doc_sub: "Summer service for non-residents · west coast",
+    emerg_continuity: "After-hours medical service",
+    emerg_continuity_sub: "Nights, weekends and holidays",
+    emerg_pharmacy: "Pharmacy Campo nell'Elba",
+    emerg_host_sub: "Host Villa Il Poderino",
+    footer_sig: "We wish you an unforgettable stay",
+    footer_brand: "Villa Il Poderino · Elba Island, Tuscany",
+    staff_note: "For further information or advice on this topic, our staff is always at your disposal."
+  },
+  de: {
+    brand: "Villa Il Poderino · Il Piccolino",
+    hero_eyebrow: "Ihr Zuhause auf der Insel",
+    hero_title: "Willkommen<br><em>Il Piccolino</em>",
+    hero_subtitle: "Ein kleiner Leitfaden für Ihren Aufenthalt — praktische Informationen zur Wohnung und unsere Empfehlungen für die Insel Elba.",
+    apt_title: "Die Wohnung",
+    apt_wifi_network: "WLAN-Netz",
+    apt_wifi_pw: "Passwort",
+    apt_checkin: "Check-in",
+    apt_checkin_val: "15:00 – 17:00 persönlich · danach Self-Check-in",
+    apt_checkout: "Check-out",
+    apt_checkout_val: "bis 09:30 Uhr",
+    apt_gate: "Torcode",
+    apt_address: "Adresse",
+    apt_parking: "Parkplatz",
+    apt_parking_hint: "Bitte parken Sie so, dass der normale Verkehr anderer Fahrzeuge nicht behindert wird.",
+    apt_garden: "Garten",
+    apt_garden_hint: "Die automatische Bewässerungsanlage schaltet sich in den Nachtstunden ein. Bitte achten Sie darauf, falls Sie sich zu diesen Zeiten im Garten aufhalten.",
+    apt_waste: "Müll",
+    waste_intro: "Mülltrennung in getrennten Beuteln:",
+    waste_1: "Plastik und Metall",
+    waste_2: "Glas",
+    waste_3: "Papier und Karton",
+    waste_4: "Bioabfall",
+    waste_5: "Restmüll",
+    waste_outro: "Die Beutel werden anschließend in den Tonnen der entsprechenden Farbe in der Nähe des Parkplatzes entsorgt.",
+    bin_blue: "Blaue Tonne",
+    bin_brown: "Braune Tonne",
+    bin_green: "Grüne Tonne",
+    bin_yellow: "Gelbe Tonne",
+    bin_grey: "Graue Tonne",
+    apt_coffee: "Kaffeemaschine",
+    apt_coffee_hint: "Bitte achten Sie beim Einsetzen der Kapseln darauf, dass diese korrekt positioniert sind und der Auffangbehälter nicht voll ist. Üben Sie keine Gewalt auf den Hebel aus.",
+    apt_contact: "Gastgeber-Kontakt",
+    rules_title: "Gut zusammenleben",
+    rule_smoke: "<strong>Rauchen verboten</strong> innerhalb der Wohnung. Bitte rauchen Sie draußen und entsorgen Sie Zigarettenkippen ordnungsgemäß.",
+    rule_pets: "<strong>Haustiere im Garten:</strong> dürfen sich frei bewegen, vermeiden Sie aber Schäden an Pflanzen und respektieren Sie die Ruhe der Nachbarn.",
+    rule_party: "<strong>Keine Feiern</strong> innerhalb oder außerhalb der Wohnung.",
+    rule_noise: "<strong>Ruhe nach Mitternacht:</strong> nach 24:00 Uhr bitten wir um Ruhe aus Rücksicht auf die Nachbarschaft.",
+    rule_tidy: "<strong>Ordentlich bei der Abreise:</strong> beim Check-out hinterlassen Sie die Wohnung bitte ordentlich und im vorgefundenen Zustand.",
+    rule_bbq: "<strong>Grill:</strong> nur Holzkohle. Offenes Feuer ist aus Sicherheitsgründen strengstens verboten.",
+    rule_lights: "<strong>Energiesparen — Licht:</strong> bitte schalten Sie das Licht aus, wenn es nicht benötigt wird.",
+    rule_ac: "<strong>Energiesparen — Klimaanlage:</strong> bitte schalten Sie sie aus, wenn Sie die Wohnung verlassen.",
+    rule_washer: "<strong>Waschmaschine — bewusste Nutzung:</strong> helfen Sie uns, Wasser und Energie zu sparen, indem Sie die Waschmaschine nur voll beladen benutzen.",
+    island_title: "Die Insel Elba",
+    island_intro: "«Die drittgrößte Insel Italiens, Napoleons Reich für neun Monate, Land aus Eisen, Granit und über hundert Stränden.»",
+    topic_history: "Historische Orte",
+    history_intro: "Elba ist untrennbar mit Napoleon verbunden, der von Mai 1814 bis Februar 1815 hier sein Exil verbrachte. Seine Spuren sind überall.",
+    hist1_t: "Villa dei Mulini", hist1_d: "Napoleons Hauptresidenz, Portoferraio",
+    hist2_t: "Villa San Martino", hist2_d: "Sommerresidenz mit der Demidoff-Galerie",
+    hist3_t: "Teatro dei Vigilanti", hist3_d: "von Napoleon 1814 erbautes Theater",
+    hist4_t: "Kirche della Misericordia", hist4_d: "Totenmaske und napoleonische Erinnerungsstücke",
+    hist5_t: "Wallfahrtskirche Madonna del Monte", hist5_d: "die älteste der Insel, zu Fuß durch den Wald erreichbar",
+    hist6_t: "Forte Falcone und Forte Stella", hist6_d: "Medici-Befestigungen aus dem 16. Jahrhundert",
+    hist7_t: "Bergbaupark Rio", hist7_d: "Bergbaugeschichte der Insel, Führungen",
+    topic_beaches_near: "Strände — die nächstgelegenen",
+    beaches_near_intro: "Die Villa Il Poderino liegt äußerst günstig: die Südküste Elbas direkt vor der Tür, mit einigen der schönsten Strände der Insel nur wenige Autominuten entfernt.",
+    bn1: "Kieselsteine und dunkler Sand, ruhig, kleine Strandbar",
+    bn2: "weißer Sand, mildes Mikroklima, einer der berühmtesten Strände Elbas",
+    bn3: "der längste Strand der Insel, feiner Sand, ideal für Familien",
+    bn4: "kleiner Strand aus Sand und Kieseln, hervorragend zum Schnorcheln",
+    bn5: "goldener Sand in geschützter Bucht, smaragdgrünes Meer",
+    topic_beaches_best: "Strände — die schönsten der Insel",
+    beaches_best_intro: "Eine Auswahl aus den über 100 Stränden Elbas, nach Küste und Typ.",
+    b1: "goldener Sand in geschützter Bucht, smaragdgrünes Meer",
+    b2: "weißer Sand, mildes Mikroklima, lebhaft",
+    b3: "600 m feiner Sand, ideal für Familien",
+    b4: "weiße Kieselsteine, klares Wasser, perfekt zum Schnorcheln",
+    b5: "Sand und Granitfelsen, spektakuläre Sonnenuntergänge",
+    b6: "weiße Eurit-Klippen, türkisfarbenes Wasser",
+    b7: "wild und ruhig, Golf von Lacona",
+    b8: "kleine Bucht mit weißen Kieseln",
+    b9: "langer Strand mit feinem Sand, gut ausgestattet",
+    b10: "romantische Legende und kristallklares Wasser",
+    b11: "Schnorcheln am Wrack der Elviscot in 10 m Tiefe",
+    coast_n: "Nord", coast_s: "Süd", coast_sw: "Südwest", coast_se: "Südost", coast_nw: "Nordwest",
+    topic_pianosa: "Pianosa",
+    pianosa_text: "Insel des Toskanischen Archipels, eigenständig erreichbar mit den Toremar-Fähren ab Piombino oder Rio Marina (ganzjährig) und mit <span class=\"hl\">den Aquavision-Tragflügelbooten ab Marina di Campo</span> in der Hochsaison. Das Dorf und der Strand <strong>Cala Giovanna</strong> — der einzige zum Baden — sind frei zugänglich. Die übrigen Gebiete der Insel (Pfade, frühchristliche Katakomben, Bagno di Agrippa, ehemaliges Gefängnis) können nur mit den Parkführern besichtigt werden. Tageshöchstgrenze von 250 Besuchern und Parkeintrittskarte erforderlich: in der Hochsaison rechtzeitig buchen.",
+    topic_hiking: "Wandern und Trekking",
+    hiking_intro: "Elba wird von der Grande Traversata Elbana (GTE) und einem Netz gut markierter Wege durchquert.",
+    h1_t: "Monte Capanne", h1_d: "der Gipfel der Insel (1019 m). Zu Fuß von Marciana oder mit der Seilbahn",
+    h2_t: "Wallfahrtskirche Madonna del Monte", h2_d: "Waldpfad von Marciana, 40-60 Min.",
+    h3_t: "Volterraio", h3_d: "mittelalterliche Burg mit 360°-Blick",
+    h4_t: "GTE — Große Elba-Querung", h4_d: "2-3-Tages-Trekking von Ost nach West",
+    h5_t: "Capo d'Enfola", h5_d: "leichter Spaziergang auf dem Vorgebirge, Bunker WK2",
+    topic_bike: "Fahrrad und Spaziergänge",
+    bike_text: "Elba ist ein beliebtes Ziel für Radfahrer und Mountainbiker, mit Panoramastraßen und über 250 km markierten Wegen. Mehrere Fahrrad- und E-Bike-Verleihstellen in Portoferraio, Marina di Campo und Capoliveri. Insbesondere Capoliveri gilt als \"Hauptstadt\" des Elba-MTB mit markierten Routen aller Niveaus am Monte Calamita. Für leichte Spaziergänge empfehlen wir die Via del Volterraio, den Küstenweg von Sant'Andrea nach Patresi und die Strandpromenade von Marciana Marina.",
+    topic_bus: "Verkehr — Busse",
+    bus_text: "Der öffentliche Verkehr wird von <strong>Autolinee Toscane (at-bus.it)</strong> betrieben. Die Linien verbinden Portoferraio mit allen wichtigen Orten der Insel: Marciana Marina, Marina di Campo, Porto Azzurro, Capoliveri, Rio. Fahrkarten sind an Zeitungskiosken, Tabakläden, autorisierten Bars oder über die App <em>at bus Toscana</em> erhältlich. In der Hochsaison wird das Angebot verstärkt; in der Nebensaison sollten Sie die Fahrpläne im Voraus prüfen. Fähren von/nach Piombino: Toremar, Moby, Blu Navy, Corsica Ferries.",
+    emerg_title: "Wichtige Nummern",
+    emerg_sub_emergencies: "Notfälle",
+    emerg_sub_health: "Gesundheitsdienste auf Elba",
+    emerg_sub_host: "Die Unterkunft",
+    emerg_eu: "Europäischer Notruf",
+    emerg_med: "Notarzt / Krankenwagen",
+    emerg_fire: "Feuerwehr",
+    emerg_coast: "Küstenwache",
+    emerg_hospital: "Krankenhaus Portoferraio",
+    emerg_hospital_sub: "Stadtteil San Rocco",
+    emerg_tourist_doc: "Ärztlicher Touristendienst",
+    emerg_tourist_doc_sub: "Sommerdienst für Nicht-Ansässige · Westküste",
+    emerg_continuity: "Ärztlicher Bereitschaftsdienst",
+    emerg_continuity_sub: "Nachts, Wochenenden und Feiertage",
+    emerg_pharmacy: "Apotheke Campo nell'Elba",
+    emerg_host_sub: "Gastgeber Villa Il Poderino",
+    footer_sig: "Wir wünschen Ihnen einen unvergesslichen Aufenthalt",
+    footer_brand: "Villa Il Poderino · Insel Elba, Toskana",
+    staff_note: "Für weitere Informationen oder Empfehlungen zu diesem Thema steht Ihnen unser Personal jederzeit gerne zur Verfügung."
+  },
+  fr: {
+    brand: "Villa Il Poderino · Il Piccolino",
+    hero_eyebrow: "Votre maison sur l'île",
+    hero_title: "Bienvenue<br><em>Il Piccolino</em>",
+    hero_subtitle: "Un petit guide pour profiter au mieux de votre séjour — informations pratiques sur l'appartement et nos conseils sur l'île d'Elbe.",
+    apt_title: "L'appartement",
+    apt_wifi_network: "Réseau Wi-Fi",
+    apt_wifi_pw: "Mot de passe",
+    apt_checkin: "Arrivée",
+    apt_checkin_val: "15h00 – 17h00 en personne · après, check-in en autonomie",
+    apt_checkout: "Départ",
+    apt_checkout_val: "avant 9h30",
+    apt_gate: "Code du portail",
+    apt_address: "Adresse",
+    apt_parking: "Stationnement",
+    apt_parking_hint: "Merci de stationner en laissant toujours libre le passage pour la circulation normale des autres véhicules.",
+    apt_garden: "Jardin",
+    apt_garden_hint: "Le système d'arrosage automatique se met en marche durant la nuit. Merci de prêter attention si vous vous trouvez dans le jardin à ces heures-là.",
+    apt_waste: "Déchets",
+    waste_intro: "Tri sélectif — sacs séparés pour :",
+    waste_1: "Plastique et métal",
+    waste_2: "Verre",
+    waste_3: "Papier et carton",
+    waste_4: "Déchets organiques",
+    waste_5: "Déchets indifférenciés",
+    waste_outro: "Les sacs doivent ensuite être déposés dans les conteneurs de la couleur correspondante, situés près du parking.",
+    bin_blue: "Bac bleu",
+    bin_brown: "Bac marron",
+    bin_green: "Bac vert",
+    bin_yellow: "Bac jaune",
+    bin_grey: "Bac gris",
+    apt_coffee: "Machine à café",
+    apt_coffee_hint: "Merci de faire attention lors de l'insertion des capsules : vérifiez qu'elles soient correctement positionnées et que le bac à capsules usagées ne soit pas plein. Ne forcez pas la poignée.",
+    apt_contact: "Contact hôte",
+    rules_title: "Bien vivre ensemble",
+    rule_smoke: "<strong>Interdit de fumer</strong> à l'intérieur de l'appartement. Merci de fumer dehors et de jeter les mégots dans les conteneurs appropriés.",
+    rule_pets: "<strong>Animaux dans le jardin :</strong> ils peuvent circuler librement, mais merci d'éviter tout dégât aux plantes et de respecter la tranquillité des voisins.",
+    rule_party: "<strong>Pas de fêtes</strong> à l'intérieur ou à l'extérieur de l'appartement.",
+    rule_noise: "<strong>Silence après minuit :</strong> après 24h00 merci d'éviter tout bruit par respect pour le voisinage.",
+    rule_tidy: "<strong>Rangement au départ :</strong> au moment du check-out merci de laisser l'appartement rangé et dans l'état où vous l'avez trouvé.",
+    rule_bbq: "<strong>Barbecue :</strong> uniquement au charbon. Toute flamme libre est strictement interdite pour des raisons de sécurité.",
+    rule_lights: "<strong>Économies d'énergie — lumières :</strong> merci d'éteindre les lumières lorsqu'elles ne sont pas utilisées.",
+    rule_ac: "<strong>Économies d'énergie — climatisation :</strong> merci de l'éteindre en sortant de l'appartement.",
+    rule_washer: "<strong>Lave-linge — usage responsable :</strong> aidez-nous à réduire le gaspillage d'eau et d'énergie en n'utilisant le lave-linge qu'à pleine charge.",
+    island_title: "L'île d'Elbe",
+    island_intro: "«La troisième île d'Italie, royaume de Napoléon pendant neuf mois, terre de fer, de granit et de plus de cent plages.»",
+    topic_history: "Lieux historiques",
+    history_intro: "L'Elbe est indissociable de Napoléon, qui y passa son exil de mai 1814 à février 1815. Ses traces sont partout.",
+    hist1_t: "Villa dei Mulini", hist1_d: "résidence principale de Napoléon, Portoferraio",
+    hist2_t: "Villa San Martino", hist2_d: "résidence d'été avec la Galerie Demidoff",
+    hist3_t: "Teatro dei Vigilanti", hist3_d: "théâtre voulu par Napoléon en 1814",
+    hist4_t: "Église de la Misericordia", hist4_d: "masque mortuaire et reliques napoléoniennes",
+    hist5_t: "Sanctuaire Madonna del Monte", hist5_d: "le plus ancien de l'île, accessible à pied dans la forêt",
+    hist6_t: "Forte Falcone et Forte Stella", hist6_d: "fortifications médicéennes du XVIe siècle",
+    hist7_t: "Parc Minier de Rio", hist7_d: "histoire minière de l'île, visites guidées",
+    topic_beaches_near: "Plages — les plus proches",
+    beaches_near_intro: "La Villa Il Poderino bénéficie d'un emplacement privilégié : la côte sud de l'île d'Elbe à portée de main, avec quelques-unes des plus belles plages de l'île à seulement quelques minutes en voiture.",
+    bn1: "galets et sable sombre, tranquille, petit bar de plage",
+    bn2: "sable blanc, microclimat doux, l'une des plus célèbres de l'Elbe",
+    bn3: "la plage la plus longue de l'île, sable fin, idéale pour les familles",
+    bn4: "petite plage de sable et galets, excellente pour le snorkeling",
+    bn5: "sable doré dans une crique abritée, mer émeraude",
+    topic_beaches_best: "Plages — les plus belles de l'île",
+    beaches_best_intro: "Une sélection parmi les plus de 100 plages de l'Elbe, par côte et type.",
+    b1: "sable doré dans une crique abritée, mer émeraude",
+    b2: "sable blanc, microclimat doux, animée",
+    b3: "600 m de sable fin, idéale pour les familles",
+    b4: "galets blancs, eau transparente, parfaite pour le snorkeling",
+    b5: "sable et falaises de granit, couchers de soleil spectaculaires",
+    b6: "falaises blanches d'eurite, eau turquoise",
+    b7: "sauvage et tranquille, Golfe de Lacona",
+    b8: "petite crique de galets blancs",
+    b9: "longue plage de sable fin, bien aménagée",
+    b10: "légende romantique et eaux limpides",
+    b11: "snorkeling sur l'épave de l'Elviscot à 10 m",
+    coast_n: "Nord", coast_s: "Sud", coast_sw: "Sud-ouest", coast_se: "Sud-est", coast_nw: "Nord-ouest",
+    topic_pianosa: "Pianosa",
+    pianosa_text: "Île de l'Archipel Toscan, accessible en autonomie avec les ferries Toremar depuis Piombino ou Rio Marina (toute l'année) et avec <span class=\"hl\">les hydroptères Aquavision depuis Marina di Campo</span> en haute saison. Le village et la plage de <strong>Cala Giovanna</strong> — la seule où la baignade est autorisée — sont en accès libre. Le reste de l'île (sentiers, catacombes paléochrétiennes, Bains d'Agrippa, ancienne prison) se visite uniquement avec les Guides du Parc. Quota journalier de 250 visiteurs et billet d'entrée du Parc obligatoire : en haute saison, réserver bien à l'avance.",
+    topic_hiking: "Randonnées et trekking",
+    hiking_intro: "L'Elbe est traversée par la Grande Traversata Elbana (GTE) et un réseau de sentiers bien balisés.",
+    h1_t: "Monte Capanne", h1_d: "le sommet de l'île (1019 m). À pied depuis Marciana ou en télécabine",
+    h2_t: "Sanctuaire Madonna del Monte", h2_d: "sentier en forêt depuis Marciana, 40-60 min",
+    h3_t: "Volterraio", h3_d: "château médiéval avec vue à 360°",
+    h4_t: "GTE — Grande Traversée Elbane", h4_d: "trek de 2-3 jours d'est en ouest",
+    h5_t: "Capo d'Enfola", h5_d: "promenade facile sur le promontoire, bunkers WW2",
+    topic_bike: "Vélo et promenades",
+    bike_text: "L'Elbe est une destination très appréciée des cyclistes et VTTistes, avec des routes panoramiques et plus de 250 km de sentiers balisés. Plusieurs points de location de vélos et e-bikes à Portoferraio, Marina di Campo et Capoliveri. Capoliveri est considérée comme la \"capitale\" du VTT elbain, avec des parcours balisés de tous niveaux sur le Monte Calamita. Pour les promenades faciles, nous conseillons la Via del Volterraio, le sentier côtier de Sant'Andrea à Patresi et le front de mer de Marciana Marina.",
+    topic_bus: "Transports — Bus",
+    bus_text: "Le transport public est géré par <strong>Autolinee Toscane (at-bus.it)</strong>. Les lignes relient Portoferraio à tous les centres principaux de l'île : Marciana Marina, Marina di Campo, Porto Azzurro, Capoliveri, Rio. Les billets s'achètent dans les kiosques, tabacs, bars autorisés ou via l'application <em>at bus Toscana</em>. En haute saison le service est renforcé ; en basse saison vérifiez les horaires à l'avance. Pour le ferry depuis/vers Piombino : Toremar, Moby, Blu Navy, Corsica Ferries.",
+    emerg_title: "Numéros utiles",
+    emerg_sub_emergencies: "Urgences",
+    emerg_sub_health: "Santé sur l'île d'Elbe",
+    emerg_sub_host: "L'établissement",
+    emerg_eu: "Numéro d'urgence européen",
+    emerg_med: "Urgences / Ambulance",
+    emerg_fire: "Pompiers",
+    emerg_coast: "Garde côtière",
+    emerg_hospital: "Hôpital de Portoferraio",
+    emerg_hospital_sub: "Localité San Rocco",
+    emerg_tourist_doc: "Service Médical Touristique",
+    emerg_tourist_doc_sub: "Service estival pour non-résidents · côte ouest",
+    emerg_continuity: "Continuité des soins",
+    emerg_continuity_sub: "Nuit, week-ends et jours fériés",
+    emerg_pharmacy: "Pharmacie Campo nell'Elba",
+    emerg_host_sub: "Hôte Villa Il Poderino",
+    footer_sig: "Nous vous souhaitons un séjour inoubliable",
+    footer_brand: "Villa Il Poderino · Île d'Elbe, Toscane",
+    staff_note: "Pour toute information ou conseil supplémentaire sur ce sujet, notre équipe reste à votre entière disposition."
+  },
+  es: {
+    brand: "Villa Il Poderino · Il Piccolino",
+    hero_eyebrow: "Vuestra casa en la isla",
+    hero_title: "Bienvenidos<br><em>Il Piccolino</em>",
+    hero_subtitle: "Una pequeña guía para disfrutar al máximo de vuestra estancia — información práctica sobre el apartamento y nuestros consejos sobre la Isla de Elba.",
+    apt_title: "El apartamento",
+    apt_wifi_network: "Red Wi-Fi",
+    apt_wifi_pw: "Contraseña",
+    apt_checkin: "Check-in",
+    apt_checkin_val: "15:00 – 17:00 en persona · después, check-in autónomo",
+    apt_checkout: "Check-out",
+    apt_checkout_val: "antes de las 09:30",
+    apt_gate: "Código verja",
+    apt_address: "Dirección",
+    apt_parking: "Aparcamiento",
+    apt_parking_hint: "Por favor aparcad dejando siempre libre el paso para la circulación normal de los demás vehículos.",
+    apt_garden: "Jardín",
+    apt_garden_hint: "El sistema de riego automático se activa durante la noche. Os rogamos prestar atención si os encontráis en el jardín en esos horarios.",
+    apt_waste: "Residuos",
+    waste_intro: "Recogida selectiva — bolsas separadas para:",
+    waste_1: "Plástico y metal",
+    waste_2: "Vidrio",
+    waste_3: "Papel y cartón",
+    waste_4: "Orgánico",
+    waste_5: "Resto",
+    waste_outro: "Las bolsas se depositan después en los contenedores del color correspondiente, situados cerca del aparcamiento.",
+    bin_blue: "Contenedor azul",
+    bin_brown: "Contenedor marrón",
+    bin_green: "Contenedor verde",
+    bin_yellow: "Contenedor amarillo",
+    bin_grey: "Contenedor gris",
+    apt_coffee: "Cafetera",
+    apt_coffee_hint: "Os rogamos prestar atención al introducir las cápsulas: comprobad que estén correctamente colocadas y que el contenedor de usadas no esté lleno. No forcéis la palanca.",
+    apt_contact: "Contacto anfitrión",
+    rules_title: "Convivir bien",
+    rule_smoke: "<strong>Prohibido fumar</strong> dentro del apartamento. Os pedimos hacerlo fuera y desechar las colillas en los contenedores adecuados.",
+    rule_pets: "<strong>Animales en el jardín:</strong> pueden circular libremente, pero os pedimos evitar daños a las plantas y respetar la tranquilidad de los vecinos.",
+    rule_party: "<strong>Sin fiestas</strong> dentro o fuera del apartamento.",
+    rule_noise: "<strong>Silencio después de medianoche:</strong> tras las 24:00 os pedimos evitar ruidos por respeto al vecindario.",
+    rule_tidy: "<strong>Orden al partir:</strong> en el momento del check-out dejad el apartamento ordenado y en las condiciones en que lo encontrasteis.",
+    rule_bbq: "<strong>Barbacoa:</strong> solo carbón. Está terminantemente prohibido el uso de llamas libres por motivos de seguridad.",
+    rule_lights: "<strong>Ahorro energético — luces:</strong> os pedimos apagar las luces cuando no se utilicen.",
+    rule_ac: "<strong>Ahorro energético — aire acondicionado:</strong> os pedimos apagarlo al salir del apartamento.",
+    rule_washer: "<strong>Lavadora — uso consciente:</strong> ayudadnos a reducir el desperdicio de agua y energía utilizando la lavadora solo a plena carga.",
+    island_title: "La Isla de Elba",
+    island_intro: "«La tercera isla de Italia, reino de Napoleón durante nueve meses, tierra de hierro, granito y más de cien playas.»",
+    topic_history: "Lugares históricos",
+    history_intro: "Elba está indisolublemente unida a Napoleón, que pasó aquí su exilio de mayo de 1814 a febrero de 1815. Sus huellas están por todas partes.",
+    hist1_t: "Villa dei Mulini", hist1_d: "residencia principal de Napoleón, Portoferraio",
+    hist2_t: "Villa San Martino", hist2_d: "residencia de verano con la Galería Demidoff",
+    hist3_t: "Teatro dei Vigilanti", hist3_d: "teatro encargado por Napoleón en 1814",
+    hist4_t: "Iglesia de la Misericordia", hist4_d: "máscara mortuoria y reliquias napoleónicas",
+    hist5_t: "Santuario Madonna del Monte", hist5_d: "el más antiguo de la isla, accesible a pie por el bosque",
+    hist6_t: "Forte Falcone y Forte Stella", hist6_d: "fortificaciones mediceas del siglo XVI",
+    hist7_t: "Parque Minero de Rio", hist7_d: "historia minera de la isla, visitas guiadas",
+    topic_beaches_near: "Playas — las más cercanas",
+    beaches_near_intro: "Villa Il Poderino disfruta de una ubicación privilegiada: la costa sur de Elba al alcance de la mano, con algunas de las playas más bellas de la isla a pocos minutos en coche.",
+    bn1: "guijarros y arena oscura, tranquila, pequeño bar de playa",
+    bn2: "arena blanca, microclima suave, una de las más famosas de Elba",
+    bn3: "la playa más larga de la isla, arena fina, ideal para familias",
+    bn4: "pequeña playa de arena y guijarros, excelente para snorkel",
+    bn5: "arena dorada en una cala resguardada, mar esmeralda",
+    topic_beaches_best: "Playas — las más bellas de la isla",
+    beaches_best_intro: "Una selección entre las más de 100 playas de Elba, por costa y tipo.",
+    b1: "arena dorada en una cala resguardada, mar esmeralda",
+    b2: "arena blanca, microclima suave, animada",
+    b3: "600 m de arena fina, ideal para familias",
+    b4: "guijarros blancos, agua transparente, perfecta para snorkel",
+    b5: "arena y acantilados de granito, atardeceres espectaculares",
+    b6: "acantilados blancos de eurita, agua turquesa",
+    b7: "salvaje y tranquila, Golfo de Lacona",
+    b8: "pequeña cala de guijarros blancos",
+    b9: "larga playa de arena fina, bien equipada",
+    b10: "leyenda romántica y aguas cristalinas",
+    b11: "snorkel sobre el mercante Elviscot a 10 m",
+    coast_n: "Norte", coast_s: "Sur", coast_sw: "Suroeste", coast_se: "Sureste", coast_nw: "Noroeste",
+    topic_pianosa: "Pianosa",
+    pianosa_text: "Isla del Archipiélago Toscano, accesible de forma autónoma con los ferries Toremar desde Piombino o Rio Marina (todo el año) y con <span class=\"hl\">los hidroalas Aquavision desde Marina di Campo</span> en temporada alta. El pueblo y la playa de <strong>Cala Giovanna</strong> — la única donde está permitido el baño — son de acceso libre. El resto de la isla (senderos, catacumbas paleocristianas, Baño de Agripa, antigua cárcel) se visita solo con las Guías del Parque. Cupo diario de 250 visitantes y entrada del Parque obligatoria: en temporada alta conviene reservar con mucha antelación.",
+    topic_hiking: "Excursiones y trekking",
+    hiking_intro: "Elba está atravesada por la Grande Traversata Elbana (GTE) y una red de senderos bien señalizados.",
+    h1_t: "Monte Capanne", h1_d: "la cima de la isla (1019 m). A pie desde Marciana o en teleférico",
+    h2_t: "Santuario Madonna del Monte", h2_d: "sendero en el bosque desde Marciana, 40-60 min",
+    h3_t: "Volterraio", h3_d: "castillo medieval con vista de 360°",
+    h4_t: "GTE — Gran Travesía de Elba", h4_d: "trekking de 2-3 días de este a oeste",
+    h5_t: "Capo d'Enfola", h5_d: "paseo fácil por el promontorio, búnkeres WW2",
+    topic_bike: "Bici y paseos",
+    bike_text: "Elba es un destino muy querido por ciclistas y mountain bikers, con carreteras panorámicas y más de 250 km de senderos señalizados. Varios puntos de alquiler de bicis y e-bikes en Portoferraio, Marina di Campo y Capoliveri. Capoliveri en particular es considerada la \"capital\" del MTB elbano, con rutas señalizadas de varios niveles en el Monte Calamita. Para paseos fáciles, recomendamos la Via del Volterraio, el sendero costero de Sant'Andrea a Patresi y el paseo marítimo de Marciana Marina.",
+    topic_bus: "Transportes — Autobuses",
+    bus_text: "El transporte público está gestionado por <strong>Autolinee Toscane (at-bus.it)</strong>. Las líneas conectan Portoferraio con todos los centros principales de la isla: Marciana Marina, Marina di Campo, Porto Azzurro, Capoliveri, Rio. Los billetes se compran en quioscos, estancos, bares autorizados o a través de la app <em>at bus Toscana</em>. En temporada alta el servicio se refuerza; en temporada baja conviene consultar horarios con antelación. Para el ferry desde/hacia Piombino: Toremar, Moby, Blu Navy, Corsica Ferries.",
+    emerg_title: "Números útiles",
+    emerg_sub_emergencies: "Emergencias",
+    emerg_sub_health: "Sanidad en la Isla de Elba",
+    emerg_sub_host: "El alojamiento",
+    emerg_eu: "Emergencia europea",
+    emerg_med: "Emergencias / Ambulancia",
+    emerg_fire: "Bomberos",
+    emerg_coast: "Guardia costera",
+    emerg_hospital: "Hospital de Portoferraio",
+    emerg_hospital_sub: "Localidad San Rocco",
+    emerg_tourist_doc: "Servicio Médico Turístico",
+    emerg_tourist_doc_sub: "Servicio de verano para no residentes · costa oeste",
+    emerg_continuity: "Continuidad Asistencial",
+    emerg_continuity_sub: "Noche, fines de semana y festivos",
+    emerg_pharmacy: "Farmacia Campo nell'Elba",
+    emerg_host_sub: "Anfitrión Villa Il Poderino",
+    footer_sig: "Os deseamos una estancia inolvidable",
+    footer_brand: "Villa Il Poderino · Isla de Elba, Toscana",
+    staff_note: "Para más información o consejos sobre este tema, nuestro personal está siempre a vuestra disposición."
+  }
+};
+
+function setLanguage(lang) {
+  document.documentElement.lang = lang;
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (translations[lang] && translations[lang][key]) {
+      el.innerHTML = translations[lang][key];
+    }
+  });
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.lang === lang);
+  });
+  try { localStorage.setItem('lang', lang); } catch(e) {}
+}
+
+document.querySelectorAll('.lang-btn').forEach(btn => {
+  btn.addEventListener('click', () => setLanguage(btn.dataset.lang));
+});
+
+// Auto-detect language on first load
+(function() {
+  let saved;
+  try { saved = localStorage.getItem('lang'); } catch(e) {}
+  if (saved && translations[saved]) {
+    setLanguage(saved);
+    return;
+  }
+  const browserLang = (navigator.language || 'it').slice(0,2).toLowerCase();
+  if (translations[browserLang]) setLanguage(browserLang);
+})();
+</script>
+
+</body>
+</html>
