@@ -355,6 +355,76 @@
   }
   .host-phone:hover { color: var(--rust); }
 
+  /* === REVIEW SECTION === */
+  .review-section {
+    max-width: 720px;
+    margin: 32px auto 0;
+    padding: 40px 28px 44px;
+    text-align: center;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    position: relative;
+  }
+  .review-section::before {
+    content: "";
+    position: absolute;
+    top: -1px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: var(--rust);
+    border-radius: 0 0 4px 4px;
+  }
+  .review-section .section-num {
+    display: block;
+    margin-bottom: 6px;
+  }
+  .review-section .section-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: clamp(1.5rem, 4.5vw, 1.85rem);
+    margin-bottom: 14px;
+    color: var(--ink);
+    line-height: 1.2;
+  }
+  .review-text {
+    font-family: 'Fraunces', serif;
+    font-size: 16px;
+    font-style: italic;
+    color: var(--ink-soft);
+    margin: 0 auto 26px;
+    max-width: 480px;
+    line-height: 1.5;
+  }
+  .review-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--rust);
+    color: var(--stone);
+    text-decoration: none;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 14.5px;
+    letter-spacing: 0.02em;
+    padding: 14px 28px;
+    border-radius: 999px;
+    transition: all 0.25s ease;
+  }
+  .review-cta:hover {
+    background: var(--ink);
+    transform: translateY(-2px);
+  }
+  .review-cta .cta-arrow {
+    transition: transform 0.25s ease;
+    font-family: 'Fraunces', serif;
+  }
+  .review-cta:hover .cta-arrow {
+    transform: translateX(4px);
+  }
+
   .waste-intro {
     font-size: 14px;
     color: var(--ink-soft);
@@ -802,6 +872,17 @@
   </div>
 </div>
 
+<!-- REVIEW -->
+<section class="review-section">
+  <span class="section-num">V.</span>
+  <h2 class="section-title" data-i18n="review_title">Se siete stati bene, fatecelo sapere</h2>
+  <p class="review-text" data-i18n="review_text">Una recensione su Booking ci scalda il cuore e aiuta chi cerca casa sull'isola.</p>
+  <a class="review-cta" href="https://www.booking.com/hotel/it/villa-il-poderino.it.html#tab-reviews" target="_blank" rel="noopener">
+    <span data-i18n="review_cta">Lascia una recensione su Booking</span>
+    <span class="cta-arrow">→</span>
+  </a>
+</section>
+
 <footer>
   <div class="sig" data-i18n="footer_sig">Vi auguriamo un soggiorno indimenticabile</div>
   <div data-i18n="footer_brand">Villa Il Poderino · Isola d'Elba, Toscana</div>
@@ -914,6 +995,9 @@ const translations = {
     emerg_continuity_sub: "Notte, weekend e festivi",
     emerg_pharmacy: "Farmacia Campo nell'Elba",
     emerg_host_sub: "Host Villa Il Poderino",
+    review_title: "Se siete stati bene, fatecelo sapere",
+    review_text: "Una recensione su Booking ci scalda il cuore e aiuta chi cerca casa sull'isola.",
+    review_cta: "Lascia una recensione su Booking",
     footer_sig: "Vi auguriamo un soggiorno indimenticabile",
     footer_brand: "Villa Il Poderino · Isola d'Elba, Toscana",
     staff_note: "Per maggiori informazioni o consigli su questo argomento, il nostro staff è sempre a vostra disposizione."
@@ -1023,6 +1107,9 @@ const translations = {
     emerg_continuity_sub: "Nights, weekends and holidays",
     emerg_pharmacy: "Pharmacy Campo nell'Elba",
     emerg_host_sub: "Host Villa Il Poderino",
+    review_title: "If you had a lovely stay, let us know",
+    review_text: "A review on Booking warms our heart and helps fellow travellers find their way to the island.",
+    review_cta: "Leave a review on Booking",
     footer_sig: "We wish you an unforgettable stay",
     footer_brand: "Villa Il Poderino · Elba Island, Tuscany",
     staff_note: "For further information or advice on this topic, our staff is always at your disposal."
@@ -1132,6 +1219,9 @@ const translations = {
     emerg_continuity_sub: "Nachts, Wochenenden und Feiertage",
     emerg_pharmacy: "Apotheke Campo nell'Elba",
     emerg_host_sub: "Gastgeber Villa Il Poderino",
+    review_title: "Hat es Ihnen gefallen? Lassen Sie es uns wissen",
+    review_text: "Eine Bewertung auf Booking wärmt unser Herz und hilft anderen Reisenden, ihren Weg auf die Insel zu finden.",
+    review_cta: "Bewertung auf Booking schreiben",
     footer_sig: "Wir wünschen Ihnen einen unvergesslichen Aufenthalt",
     footer_brand: "Villa Il Poderino · Insel Elba, Toskana",
     staff_note: "Für weitere Informationen oder Empfehlungen zu diesem Thema steht Ihnen unser Personal jederzeit gerne zur Verfügung."
@@ -1241,6 +1331,9 @@ const translations = {
     emerg_continuity_sub: "Nuit, week-ends et jours fériés",
     emerg_pharmacy: "Pharmacie Campo nell'Elba",
     emerg_host_sub: "Hôte Villa Il Poderino",
+    review_title: "Si vous vous êtes plu, faites-le nous savoir",
+    review_text: "Un avis sur Booking nous va droit au cœur et aide ceux qui cherchent leur chemin vers l'île.",
+    review_cta: "Laisser un avis sur Booking",
     footer_sig: "Nous vous souhaitons un séjour inoubliable",
     footer_brand: "Villa Il Poderino · Île d'Elbe, Toscane",
     staff_note: "Pour toute information ou conseil supplémentaire sur ce sujet, notre équipe reste à votre entière disposition."
@@ -1350,6 +1443,9 @@ const translations = {
     emerg_continuity_sub: "Noche, fines de semana y festivos",
     emerg_pharmacy: "Farmacia Campo nell'Elba",
     emerg_host_sub: "Anfitrión Villa Il Poderino",
+    review_title: "Si os habéis encontrado bien, hacédnoslo saber",
+    review_text: "Una reseña en Booking nos llena el corazón y ayuda a quien busca su hogar en la isla.",
+    review_cta: "Dejar una reseña en Booking",
     footer_sig: "Os deseamos una estancia inolvidable",
     footer_brand: "Villa Il Poderino · Isla de Elba, Toscana",
     staff_note: "Para más información o consejos sobre este tema, nuestro personal está siempre a vuestra disposición."
